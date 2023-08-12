@@ -1,13 +1,20 @@
 "use client";
 
 import verifySession from "@/utils/verifySession";
+import { useSession } from "next-auth/react";
 
 export default function About() {
-  verifySession();
+  const { data: session } = useSession();
 
   return (
-    <div className="flex justify-center items-center">
-      <h1 className="text-6xl">About Page</h1>
-    </div>
+    <>
+      {!session ? (
+        verifySession()
+      ) : (
+        <div className="flex justify-center items-center">
+          <h1 className="text-6xl">About Page</h1>
+        </div>
+      )}
+    </>
   );
 }

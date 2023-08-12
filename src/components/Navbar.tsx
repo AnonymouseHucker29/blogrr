@@ -35,9 +35,7 @@ const Navbar = () => {
         </header>
       ) : (
         <header className="flex items-center justify-between container mx-auto p-5">
-          <h1 className="text-4xl">
-            <Link href="/">Blogrr</Link>
-          </h1>
+          <h1 className="text-4xl cursor-default">Blogrr</h1>
           <ThemeToggle />
         </header>
       )}
