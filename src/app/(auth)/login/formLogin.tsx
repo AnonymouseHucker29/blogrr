@@ -46,7 +46,7 @@ export default function LoginForm({ csrfToken }: any) {
     <Form {...form}>
       <form
         onSubmit={form.handleSubmit(onSubmit)}
-        className="space-y-8"
+        className="space-y-6"
         method="POST"
         action="/api/auth/callback/credentials"
       >

@@ -1,6 +1,6 @@
 "use client";
 
-import verifySession from "@/utils/verifySession";
+import { verifySession } from "@/utils/verifySession";
 import { useSession } from "next-auth/react";
 
 export default function HomePage() {
