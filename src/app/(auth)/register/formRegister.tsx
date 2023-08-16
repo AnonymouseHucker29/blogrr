@@ -32,7 +32,7 @@ const formSchema = z.object({
   }),
 });
 
-export default function LoginForm({ csrfToken }: any) {
+export default function RegisterForm({ csrfToken }: any) {
   type FormSchemaKeys = keyof (typeof formSchema)["_def"]["shape"];
 
   const [showPassword, setShowPassword] = useState(false);
@@ -117,7 +117,7 @@ export default function LoginForm({ csrfToken }: any) {
             type="submit"
             className="w-full rounded-full"
           >
-            LOG IN
+            SIGN UP
           </Button>
         </div>
       </form>

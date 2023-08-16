@@ -1,18 +1,19 @@
 import Login from "@/app/(auth)/login/page";
-import { Card, CardContent } from "@/components/ui/card";
+import { ExclamationTriangleIcon } from "@radix-ui/react-icons";
+import { Alert, AlertDescription } from "@/components/ui/alert";
 
-export const verifySession = () => {
+export const verifySession = (pageName: string) => {
   return (
     <>
-      <div className="flex justify-center items-center h-screen">
-        <Card>
-          <CardContent className="pt-10">
-            <h1 className="text-xl text-red-500">
-              You need to be signed in to view the content.
-            </h1>
-          </CardContent>
-        </Card>
-      </div>
+      <Alert
+        variant="destructive"
+        className="w-[350px] flex justify-center items-center mx-auto"
+      >
+        <AlertDescription className="flex justify-center items-center gap-x-3">
+          <ExclamationTriangleIcon />
+          Sign in to access the {pageName} page.
+        </AlertDescription>
+      </Alert>
       <Login />
     </>
   );

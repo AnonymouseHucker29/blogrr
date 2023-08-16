@@ -1,6 +1,7 @@
 import { NextAuthOptions } from "next-auth";
 import dotenv from "dotenv";
 import CredentialsProvider from "next-auth/providers/credentials";
+import GoogleProvider from "next-auth/providers/google";
 
 dotenv.config();
 
@@ -43,17 +44,12 @@ export const authOptions: NextAuthOptions = {
         }
       },
     }),
+    GoogleProvider({
+      clientId: process.env.GOOGLE_CLIENT_ID || "",
+      clientSecret: process.env.GOOGLE_SECRET || "",
+    }),
   ],
   pages: {
     signIn: "/login",
-  },
-  callbacks: {
-    async redirect(params) {
-      if (params?.url === "/api/auth/signin") {
-        return Promise.resolve("/login");
-      } else {
-        return Promise.resolve("/");
-      }
-    },
   },
 };

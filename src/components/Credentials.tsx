@@ -19,8 +19,11 @@ export const Credentials = () => {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <Avatar className="cursor-pointer">
-          <AvatarImage src="" alt="@avatar" />
+        <Avatar className="cursor-pointer scale-90">
+          <AvatarImage
+            src={session?.user?.image || undefined}
+            alt="Profile Icon"
+          />
           <AvatarFallback>
             <AvatarIcon />
           </AvatarFallback>

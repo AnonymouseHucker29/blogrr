@@ -23,7 +23,7 @@ export default function RootLayout({
         <NextAuthSessionProvider>
           <ThemeProvider attribute="class">
             <Navbar />
-            {children}
+            <main className="antialiased scroll-smooth">{children}</main>
           </ThemeProvider>
         </NextAuthSessionProvider>
       </body>
