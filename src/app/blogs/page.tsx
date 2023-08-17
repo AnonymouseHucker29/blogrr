@@ -9,10 +9,10 @@ export default function Blog() {
   return (
     <>
       {!session ? (
-        verifySession(Blog.name)
+        verifySession("Blogs")
       ) : (
         <div className="flex justify-center items-center">
-          <h1 className="text-6xl">Blog Page</h1>
+          <h1 className="text-6xl">Blogs Page</h1>
         </div>
       )}
     </>

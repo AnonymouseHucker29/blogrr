@@ -9,7 +9,7 @@ export default function About() {
   return (
     <>
       {!session ? (
-        verifySession(About.name)
+        verifySession("About")
       ) : (
         <div className="flex justify-center items-center">
           <h1 className="text-6xl">About Page</h1>
