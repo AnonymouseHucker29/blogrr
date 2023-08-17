@@ -3,7 +3,7 @@ import type { Metadata } from "next";
 import { ThemeProvider } from "@/components/ThemeProvider";
 import localFont from "next/font/local";
 import Navbar from "@/components/Navbar";
-import NextAuthSessionProvider from "../providers/sessionProvider";
+import NextAuthSessionProvider from "@/providers/sessionProvider";
 
 export const avgardd = localFont({ src: "../../public/fonts/AVGARDD_2.woff" });
 

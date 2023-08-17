@@ -21,7 +21,6 @@ import {
   FormControl,
   FormField,
   FormItem,
-  FormLabel,
   FormMessage,
 } from "@/components/ui/form";
 
@@ -86,9 +85,6 @@ export default function RegisterForm({ csrfToken }: any) {
             name={fieldName as FormSchemaKeys}
             render={({ field }) => (
               <FormItem>
-                {/* <FormLabel>
-                  {fieldName.charAt(0).toUpperCase() + fieldName.slice(1)}
-                </FormLabel> */}
                 <FormControl>
                   <div className="flex items-center">
                     {fieldName === "username" ? (
