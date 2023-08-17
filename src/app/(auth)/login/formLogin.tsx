@@ -6,6 +6,7 @@ import { Input } from "@/components/ui/input";
 import { useForm } from "react-hook-form";
 import { signIn } from "next-auth/react";
 import { Button } from "@/components/ui/button";
+import { useState } from "react";
 import {
   PersonIcon,
   LockClosedIcon,
@@ -17,11 +18,8 @@ import {
   FormControl,
   FormField,
   FormItem,
-  FormLabel,
   FormMessage,
 } from "@/components/ui/form";
-import { useState } from "react";
-import React from "react";
 
 const formSchema = z.object({
   username: z.string().min(2, {
@@ -68,9 +66,6 @@ export default function LoginForm({ csrfToken }: any) {
             name={fieldName as FormSchemaKeys}
             render={({ field }) => (
               <FormItem>
-                {/* <FormLabel>
-                  {fieldName.charAt(0).toUpperCase() + fieldName.slice(1)}
-                </FormLabel> */}
                 <FormControl>
                   <div className="flex items-center">
                     {fieldName === "username" ? (
@@ -117,7 +112,7 @@ export default function LoginForm({ csrfToken }: any) {
             type="submit"
             className="w-full rounded-full"
           >
-            LOG IN
+            SIGN IN
           </Button>
         </div>
       </form>

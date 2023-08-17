@@ -1,11 +1,15 @@
 "use client";
 
 import * as z from "zod";
+import "react-toastify/dist/ReactToastify.css";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Input } from "@/components/ui/input";
+import { useState } from "react";
 import { useForm } from "react-hook-form";
-import { signIn } from "next-auth/react";
 import { Button } from "@/components/ui/button";
+import { useTheme } from "next-themes";
+import { avgardd } from "@/app/layout";
+import { toast, ToastContainer } from "react-toastify";
 import {
   PersonIcon,
   LockClosedIcon,
@@ -20,8 +24,6 @@ import {
   FormLabel,
   FormMessage,
 } from "@/components/ui/form";
-import { useState } from "react";
-import React from "react";
 
 const formSchema = z.object({
   username: z.string().min(2, {
@@ -35,6 +37,8 @@ const formSchema = z.object({
 export default function RegisterForm({ csrfToken }: any) {
   type FormSchemaKeys = keyof (typeof formSchema)["_def"]["shape"];
 
+  const { theme } = useTheme();
+
   const [showPassword, setShowPassword] = useState(false);
 
   const form = useForm<z.infer<typeof formSchema>>({
@@ -46,10 +50,24 @@ export default function RegisterForm({ csrfToken }: any) {
   });
 
   async function onSubmit(values: z.infer<typeof formSchema>) {
-    await signIn("credentials", {
-      username: values.username,
-      password: values.password,
-    });
+    await fetch("api/register-user", {
+      method: "POST",
+      headers: {
+        "Content-Type": "Application/JSON",
+      },
+      body: JSON.stringify(values),
+    })
+      .then((res) => {
+        if (res.ok) {
+          toast.success("Account successfully created.");
+          form.reset();
+        } else {
+          toast.error("Error creating account.");
+        }
+      })
+      .catch((err) => {
+        toast.error(err);
+      });
   }
 
   return (
@@ -120,6 +138,12 @@ export default function RegisterForm({ csrfToken }: any) {
             SIGN UP
           </Button>
         </div>
+        <ToastContainer
+          closeOnClick={false}
+          bodyClassName={avgardd.className}
+          position="top-center"
+          theme={theme === "light" ? "light" : "dark"}
+        />
       </form>
     </Form>
   );

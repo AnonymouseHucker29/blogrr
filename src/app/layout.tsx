@@ -5,7 +5,7 @@ import localFont from "next/font/local";
 import Navbar from "@/components/Navbar";
 import NextAuthSessionProvider from "../providers/sessionProvider";
 
-const avgardd = localFont({ src: "../../public/fonts/AVGARDD_2.woff" });
+export const avgardd = localFont({ src: "../../public/fonts/AVGARDD_2.woff" });
 
 export const metadata: Metadata = {
   title: "Blogrr",

@@ -7,11 +7,11 @@ export default function Login() {
   return (
     <section className="flex justify-center items-center">
       <Card className="w-[350px] mt-4 pt-4 pb-3 flex flex-col justify-center items-center shadow-xl">
-        <CardTitle className="text-xl">SIGN IN NOW</CardTitle>
+        <CardTitle className="text-xl">LOG IN NOW</CardTitle>
         <CardContent>
           <LoginForm />
           <h3 className="text-xs text-center mt-7">
-            Don't have an account?{" "}
+            Don&apos;t have an account?{" "}
             <Link href="/register" className="underline">
               Register now!
             </Link>

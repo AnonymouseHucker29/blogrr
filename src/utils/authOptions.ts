@@ -1,9 +1,8 @@
 import { NextAuthOptions } from "next-auth";
-import dotenv from "dotenv";
 import CredentialsProvider from "next-auth/providers/credentials";
 import GoogleProvider from "next-auth/providers/google";
-
-dotenv.config();
+import UserModel from "@/models/users";
+import connectDB from "@/lib/mongoDB";
 
 export const authOptions: NextAuthOptions = {
   providers: [
@@ -24,9 +23,12 @@ export const authOptions: NextAuthOptions = {
       async authorize(credentials, req) {
         console.log("Received credentials:", credentials);
 
-        const user =
-          credentials?.username === process.env.USERNAME &&
-          credentials?.password === process.env.PASSWORD;
+        await connectDB();
+
+        const user = await UserModel.findOne({
+          username: credentials?.username,
+          password: credentials?.password,
+        });
 
         console.log("Authorization result:", user);
 

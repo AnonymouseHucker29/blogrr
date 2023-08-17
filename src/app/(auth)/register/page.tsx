@@ -6,7 +6,7 @@ import Link from "next/link";
 export default function Register() {
   return (
     <section className="flex justify-center items-center">
-      <Card className="w-[350px] mt-4 pt-6 pb-3 flex flex-col justify-center items-center">
+      <Card className="w-[350px] mt-4 pt-4 pb-3 flex flex-col justify-center items-center">
         <CardTitle className="text-xl">REGISTER NOW</CardTitle>
         <CardContent>
           <RegisterForm />
