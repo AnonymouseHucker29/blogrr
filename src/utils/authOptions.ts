@@ -36,9 +36,11 @@ export const authOptions: NextAuthOptions = {
           return (
             console.log(`Successfully logged in as ${credentials?.username}`),
             {
-              id: `1`,
+              id: user._id,
               name: credentials?.username,
               password: credentials?.password,
+              email: "",
+              image: "",
             }
           );
         } else {

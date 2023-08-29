@@ -1,17 +1,22 @@
 "use client";
 
 import * as z from "zod";
+import "react-toastify/dist/ReactToastify.css";
+import { toast, ToastContainer } from "react-toastify";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Input } from "@/components/ui/input";
 import { useForm } from "react-hook-form";
 import { signIn } from "next-auth/react";
 import { Button } from "@/components/ui/button";
 import { useState } from "react";
+import { avgardd } from "@/app/layout";
+import { useTheme } from "next-themes";
 import {
   PersonIcon,
   LockClosedIcon,
   EyeOpenIcon,
   EyeClosedIcon,
+  ReloadIcon,
 } from "@radix-ui/react-icons";
 import {
   Form,
@@ -34,6 +39,8 @@ export default function LoginForm({ csrfToken }: any) {
   type FormSchemaKeys = keyof (typeof formSchema)["_def"]["shape"];
 
   const [showPassword, setShowPassword] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const { theme } = useTheme();
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -44,9 +51,18 @@ export default function LoginForm({ csrfToken }: any) {
   });
 
   async function onSubmit(values: z.infer<typeof formSchema>) {
+    setLoading(true);
     await signIn("credentials", {
       username: values.username,
       password: values.password,
+      redirect: false,
+    }).then((res) => {
+      if (res?.error) {
+        setLoading(false);
+        toast.error("Incorrect credentials.");
+        form.reset();
+      }
+      setLoading(false);
     });
   }
 
@@ -112,9 +128,15 @@ export default function LoginForm({ csrfToken }: any) {
             type="submit"
             className="w-full rounded-full"
           >
-            SIGN IN
+            {loading ? <ReloadIcon className="animate-spin" /> : "SIGN IN"}
           </Button>
         </div>
+        <ToastContainer
+          closeOnClick={false}
+          bodyClassName={avgardd.className}
+          position="top-center"
+          theme={theme === "light" ? "light" : "dark"}
+        />
       </form>
     </Form>
   );

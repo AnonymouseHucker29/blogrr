@@ -9,6 +9,14 @@ const UserSchema = new Schema({
     type: String,
     trim: true,
   },
+  email: {
+    type: String,
+    trim: true,
+  },
+  image: {
+    type: String,
+    trim: true,
+  },
   date: {
     type: Date,
     default: Date.now,

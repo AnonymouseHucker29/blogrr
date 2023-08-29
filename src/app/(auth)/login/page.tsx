@@ -1,6 +1,6 @@
 import { Card, CardContent, CardTitle } from "@/components/ui/card";
 import { GoogleLoginButton } from "@/components/GoogleLoginButton";
-import LoginForm from "./formLogin";
+import LoginForm from "@/app/(auth)/login/formLogin";
 import Link from "next/link";
 
 export default function Login() {

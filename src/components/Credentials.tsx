@@ -1,7 +1,7 @@
 "use client";
 
 import { useSession, signOut } from "next-auth/react";
-import { AvatarIcon } from "@/components/misc/avatar";
+import { AvatarIcon, Pencil1Icon } from "@radix-ui/react-icons";
 import { ExitIcon } from "@/components/misc/exitIcon";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import {
@@ -12,6 +12,7 @@ import {
   DropdownMenuSeparator,
   DropdownMenuItem,
 } from "@/components/ui/dropdown-menu";
+import Link from "next/link";
 
 export const Credentials = () => {
   const { data: session } = useSession();
@@ -25,7 +26,7 @@ export const Credentials = () => {
             alt="Profile Icon"
           />
           <AvatarFallback>
-            <AvatarIcon />
+            <AvatarIcon className="w-[100px] h-[100px]" />
           </AvatarFallback>
         </Avatar>
       </DropdownMenuTrigger>
@@ -36,7 +37,16 @@ export const Credentials = () => {
           </h3>
         </DropdownMenuLabel>
         <DropdownMenuSeparator />
-        <DropdownMenuItem onClick={() => signOut()} className="cursor-pointer">
+        <DropdownMenuItem>
+          <div className="flex items-center justify-center gap-x-3">
+            <Pencil1Icon />
+            <Link href={`/${session?.user?.name}`}>Edit account</Link>
+          </div>
+        </DropdownMenuItem>
+        <DropdownMenuItem
+          onClick={() => signOut({ callbackUrl: "/" })}
+          className="cursor-pointer"
+        >
           <div className="flex items-center justify-center gap-x-3">
             <ExitIcon />
             Sign out
